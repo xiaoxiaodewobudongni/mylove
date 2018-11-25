@@ -16,12 +16,12 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from goods.views import index,category,detail
+
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^user/',include("user.urls",namespace="user")),
-    url(r'^cart/',include("cart.urls",namespace="cart")),
-    url(r'^goods/',include("goods.urls",namespace="goods")),
-    url(r'^order/',include("order.urls",namespace="order")),
-    # 上传部件自动调用的上传地址
-    url(r'^ckeditor/', include("ckeditor_uploader.urls")),
+    url(r'^$',index,name="首页"),
+    url(r'^(?P<id>\d+).html$',detail,name="详情"),
+    url(r'^category/(?P<cate_id>\d+)/(?P<order>\d+)/$',category,name="分类"),
 ]
+
+
